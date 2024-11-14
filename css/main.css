@@ -162,3 +162,78 @@ nav a:hover span {
 	margin: 20px;
 	position: inherit;
 }
+
+/* Hamburger */
+
+.menu-toggle {
+	display: none;
+}
+
+#hamburger {
+	position: fixed;
+	top: 20px;
+	display: none;
+	z-index: 4;
+}
+
+#hamburger input {
+	width: 120%;
+	height: 120%;
+}
+
+.hamburger {
+	cursor: pointer;
+}
+
+.hamburger .bar {
+	width: 60px;
+	height: 6px;
+	background-color: var(--inactive-text-color);
+	margin: 5px 0;
+	transition: all 0.3s;
+}
+
+#nav-menu {
+	display: none;
+	background-color: var(--background-color);
+	padding: 10px;
+	width: 100%;
+	box-shadow: 0 2px 10px var(--shadow-color);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	z-index: 4;
+}
+
+.menu-toggle:checked + .hamburger #bar1 {
+	transform: rotate(45deg);
+	top: 15px;
+}
+
+.menu-toggle:checked + .hamburger #bar2 {
+	opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger #bar3 {
+	transform: rotate(-45deg);
+	top: -10px;
+}
+
+.menu-toggle:checked ~ #nav-menu {
+	display: block;
+	opacity: 0.9;
+	transition: opacity 0.4s ease;
+}
+
+/* Show hamburger icon on small screens */
+@media (max-width: 768px) {
+	.header-container {
+		margin-top: 80px;
+	}
+	#hamburger {
+		display: block;
+	}
+
+	nav {
+		display: none;
+	}
+}
