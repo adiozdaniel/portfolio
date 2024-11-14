@@ -12,14 +12,39 @@
 	--fadebackground-color: #1e1e1e;
 	--stroke-color: #dca007;
 	--shadow-color: #000000b2;
+	--text-color: #ada446;
+	--highlight-color: #0ef;
 }
 
 body {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
 	min-height: 100vh;
 	font-size: 14px;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+nav {
+	padding: 10px;
+}
+
+nav a.navbar-link {
+	font-size: 1.1em;
+	color: var(--text-color);
+	text-decoration: none;
+	padding: 6px 20px;
+	transition: color 0.5s;
+}
+
+nav a.navbar-link:hover {
+	color: var(--highlight-color);
 }
 
 .main-container {
@@ -35,25 +60,25 @@ body {
 
 /* Container for SVG with border radius */
 .header-container {
-	display: flex;
+	margin: auto;
 	position: relative;
-	width: 100%;
+	width: 95%;
 	height: 300px;
 	overflow: hidden;
 	background-color: var(--fadebackground-color);
 	opacity: 0.8;
 	transition: opacity 0.5s ease;
 	box-shadow: 0px 4px 15px var(--shadow-color);
+	border-radius: 30px;
 }
 
 /* SVG scaling styles */
 #svgPattern,
-#svgGradient,
-#adioz_kwene {
+#svgGradient {
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 45%;
+	width: 36%;
 }
 
 #svgPattern {
@@ -62,8 +87,17 @@ body {
 }
 
 #svgGradient {
-	height: 110%;
+	height: 100%;
 	z-index: 1;
+}
+
+#adioz_kwene {
+	position: absolute;
+	top: 0;
+	right: 0;
+	max-width: 45%;
+	height: auto;
+	object-fit: cover;
 }
 
 /* Style for svgPattern lines */
