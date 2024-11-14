@@ -6,19 +6,69 @@
 
 :root {
 	--background-color: rgba(47, 19, 1, 1);
+	--fadebackground-color: #1e1e1e;
+	--stroke-color: #dca007;
+	--shadow-color: #000000b2;
 }
 
 body {
 	font-size: 14px;
 }
 
-.v12_95 {
+.main-container {
 	width: 100%;
-	height: 1923px;
+	height: 100vh;
 	background: var(--background-color);
 	opacity: 1;
 	position: relative;
 	top: 0px;
 	left: 0px;
 	overflow: hidden;
+}
+
+/* Container for SVG with border radius */
+.header-container {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+	background-color: var(--fadebackground-color);
+	opacity: 0.8;
+	transition: opacity 0.5s ease;
+	box-shadow: 0px 4px 15px var(--shadow-color);
+}
+
+/* SVG scaling styles */
+#svgPattern,
+#svgGradient {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 45%;
+}
+
+#svgPattern {
+	z-index: 2;
+	height: 100%;
+}
+
+#svgGradient {
+	height: 110%;
+	z-index: 1;
+}
+
+/* Style for svgPattern lines */
+.line-pattern {
+	stroke: var(--stroke-color);
+	stroke-opacity: 0.33;
+}
+
+/* Background color for the svgGradient */
+.background-rect {
+	fill: var(--fadebackground-color);
+}
+
+/* Style for the gradient ellipse */
+.gradient-ellipse {
+	fill: url(#paint0_linear_0_1);
 }
