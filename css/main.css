@@ -12,6 +12,7 @@
 	--fadebackground-color: #1e1e1e;
 	--stroke-color: #dca007;
 	--shadow-color: #000000b2;
+	--shade-color: #020202;
 	--text-color: #ada446;
 	--inactive-text-color: #6c6836;
 	--highlight-color: #0ef;
@@ -170,6 +171,7 @@ nav a:hover span {
 }
 
 #hamburger {
+	width: 80%;
 	position: fixed;
 	top: 20px;
 	display: none;
@@ -179,6 +181,60 @@ nav a:hover span {
 #hamburger input {
 	width: 120%;
 	height: 120%;
+}
+
+#hamburger ul {
+	position: relative;
+	transform: skewY(-15deg);
+}
+
+#hamburger ul li {
+	margin: 2px;
+	position: relative;
+	list-style: none;
+	width: 200px;
+	background: var(--shade-color);
+	padding: 15px;
+	z-index: var(--i);
+}
+
+#hamburger ul li::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -40px;
+	width: 40px;
+	height: 100%;
+	background: var(--shade-color);
+	transform-origin: right;
+	transform: skewY(45deg);
+	transition: 0.5s;
+}
+
+#hamburger ul li::after {
+	content: "";
+	position: absolute;
+	top: -40px;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	background: var(--inactive-text-color);
+	transform-origin: bottom;
+	transform: skewX(45deg);
+	transition: 0.5s;
+}
+
+#hamburger ul li a {
+	text-decoration: none;
+	color: var(--inactive-text-color);
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.05s;
+	transition: 0.5s;
+}
+
+#hamburger ul li:hover a {
+	color: var(--highlight-color);
 }
 
 .hamburger {
@@ -195,11 +251,6 @@ nav a:hover span {
 
 #nav-menu {
 	display: none;
-	background-color: var(--background-color);
-	padding: 10px;
-	width: 100%;
-	box-shadow: 0 2px 10px var(--shadow-color);
-	opacity: 0;
 	transition: opacity 0.4s ease;
 	z-index: 4;
 }
