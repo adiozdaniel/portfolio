@@ -196,6 +196,16 @@ nav a:hover span {
 	background: var(--shade-color);
 	padding: 15px;
 	z-index: var(--i);
+	transition: 0.5s;
+}
+
+#hamburger ul li:hover {
+	background: var(--highlight-color);
+	transform: translateX(50px);
+}
+
+#hamburger ul li:last-child::after {
+	box-shadow: -100px 100px 20px var(--shadow-color);
 }
 
 #hamburger ul li::before {
@@ -211,6 +221,10 @@ nav a:hover span {
 	transition: 0.5s;
 }
 
+#hamburger ul li:hover::before {
+	background: var(--highlight-color);
+}
+
 #hamburger ul li::after {
 	content: "";
 	position: absolute;
@@ -218,10 +232,14 @@ nav a:hover span {
 	left: 0;
 	width: 100%;
 	height: 40px;
-	background: var(--inactive-text-color);
+	background: var(--shade-color);
 	transform-origin: bottom;
 	transform: skewX(45deg);
 	transition: 0.5s;
+}
+
+#hamburger ul li:hover::after {
+	background: var(--highlight-color);
 }
 
 #hamburger ul li a {
@@ -234,7 +252,7 @@ nav a:hover span {
 }
 
 #hamburger ul li:hover a {
-	color: var(--highlight-color);
+	color: var(--background-color);
 }
 
 .hamburger {
