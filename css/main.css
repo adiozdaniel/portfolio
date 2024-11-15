@@ -8,6 +8,7 @@
 }
 
 :root {
+	/* base colors */
 	--background-color: rgba(47, 19, 1, 1);
 	--fadebackground-color: #1e1e1e;
 	--stroke-color: #dca007;
@@ -16,6 +17,9 @@
 	--text-color: #ada446;
 	--inactive-text-color: #6c6836;
 	--highlight-color: #0ef;
+
+	/* animations */
+	--left: 0px;
 }
 
 body {
@@ -88,7 +92,6 @@ nav a:hover span {
 	position: relative;
 	width: 95%;
 	height: 300px;
-	overflow: hidden;
 	background-color: var(--fadebackground-color);
 	opacity: 0.8;
 	transition: opacity 0.5s ease;
@@ -113,15 +116,6 @@ nav a:hover span {
 #svgGradient {
 	height: 100%;
 	z-index: 1;
-}
-
-#adioz_kwene {
-	position: absolute;
-	top: 0;
-	right: 0;
-	max-width: 45%;
-	height: auto;
-	object-fit: cover;
 }
 
 /* Style for svgPattern lines */
@@ -305,4 +299,39 @@ nav a:hover span {
 	nav {
 		display: none;
 	}
+}
+
+/* Banner */
+.banner {
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+}
+
+.banner .engineer {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	bottom: 170px;
+	left: 0;
+	transform: translateX(50%);
+	z-index: 5;
+	transition: 0.7s;
+}
+
+.banner .engineer .bottle {
+	margin-top: 20px;
+	background: url(/images/adioz_kwene.png) var(--left) 0,
+		url(/images/bottle-1.png);
+	background-size: auto 100%;
+	width: 320px;
+	aspect-ratio: 2 / 5;
+	background-blend-mode: multiply;
+	mask-image: url(/images/bottle-1.png);
+	mask-size: auto 100%;
+	transition: 0.7s;
+}
+
+.banner .engineer:hover {
+	--left: -1000px;
 }
