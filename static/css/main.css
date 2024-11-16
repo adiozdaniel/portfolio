@@ -283,6 +283,11 @@ nav a:hover span {
 		margin: 0;
 	}
 
+	.banner-container .engineer {
+		width: 67%;
+		max-width: none;
+	}
+
 	nav {
 		display: none;
 	}
