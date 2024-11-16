@@ -1,54 +1,80 @@
 // Handles mouse movement, scrolling, and touch swipes for continuous horizontal scroll with limits
-document.querySelectorAll(".engineer").forEach((engineer) => {
-	let lastScroll = 0;
-	const maxScroll = 200;
-	const minScroll = -200;
+class EngineerScrollHandler {
+	constructor(engineer) {
+		this.engineer = engineer;
+		this.lastScroll = 0;
+		this.maxScroll = 200;
+		this.minScroll = -200;
+		this.touchStart = 0;
 
-	engineer.addEventListener("mousemove", function (e) {
-		const bounds = engineer.getBoundingClientRect();
+		this.initializeEventListeners();
+	}
+
+	initializeEventListeners() {
+		this.engineer.addEventListener(
+			"mousemove",
+			this.handleMouseMove.bind(this)
+		);
+		this.engineer.addEventListener(
+			"mouseleave",
+			this.handleMouseLeave.bind(this)
+		);
+		this.engineer.addEventListener("wheel", this.handleWheelScroll.bind(this), {
+			passive: false,
+		});
+		this.engineer.addEventListener(
+			"touchstart",
+			this.handleTouchStart.bind(this)
+		);
+		this.engineer.addEventListener(
+			"touchmove",
+			this.handleTouchMove.bind(this)
+		);
+	}
+
+	handleMouseMove(e) {
+		const bounds = this.engineer.getBoundingClientRect();
 		const x = e.clientX - bounds.left;
 		const y = e.clientY - bounds.top;
 		const left = (x / bounds.width - 0.5) * 200;
 		const top = (y / bounds.height - 0.5) * -20;
-		engineer.style.setProperty("--left", `${left}px`);
-		engineer.style.setProperty("--top", `${top}px`);
-	});
+		this.engineer.style.setProperty("--left", `${left}px`);
+		this.engineer.style.setProperty("--top", `${top}px`);
+	}
 
-	engineer.addEventListener("mouseleave", function () {});
+	handleMouseLeave() {}
 
-	engineer.addEventListener(
-		"wheel",
-		function (e) {
-			e.preventDefault();
-			let scrollAmount = e.deltaY > 0 ? 10 : -10;
+	handleWheelScroll(e) {
+		e.preventDefault();
+		let scrollAmount = e.deltaY > 0 ? 10 : -10;
 
-			if (lastScroll + scrollAmount > maxScroll) {
-				lastScroll = maxScroll;
-			} else if (lastScroll + scrollAmount < minScroll) {
-				lastScroll = minScroll;
-			} else {
-				lastScroll += scrollAmount;
-			}
+		if (this.lastScroll + scrollAmount > this.maxScroll) {
+			this.lastScroll = this.maxScroll;
+		} else if (this.lastScroll + scrollAmount < this.minScroll) {
+			this.lastScroll = this.minScroll;
+		} else {
+			this.lastScroll += scrollAmount;
+		}
 
-			engineer.style.setProperty("--left", `${lastScroll}px`);
-		},
-		{ passive: false }
-	);
+		this.engineer.style.setProperty("--left", `${this.lastScroll}px`);
+	}
 
-	let touchStart = 0;
+	handleTouchStart(e) {
+		this.touchStart = e.touches[0].clientX;
+	}
 
-	engineer.addEventListener("touchstart", function (e) {
-		touchStart = e.touches[0].clientX;
-	});
-
-	engineer.addEventListener("touchmove", function (e) {
+	handleTouchMove(e) {
 		let touchMove = e.touches[0].clientX;
-		let touchDelta = touchMove - touchStart;
+		let touchDelta = touchMove - this.touchStart;
 		let swipeLeft = (touchDelta / window.innerWidth) * 200;
 
-		if (swipeLeft > maxScroll) swipeLeft = maxScroll;
-		if (swipeLeft < minScroll) swipeLeft = minScroll;
+		if (swipeLeft > this.maxScroll) swipeLeft = this.maxScroll;
+		if (swipeLeft < this.minScroll) swipeLeft = this.minScroll;
 
-		engineer.style.setProperty("--left", `${swipeLeft}px`);
-	});
+		this.engineer.style.setProperty("--left", `${swipeLeft}px`);
+	}
+}
+
+document.querySelectorAll(".engineer").forEach((engineer) => {
+	new EngineerScrollHandler(engineer);
 });
