@@ -1,71 +1,70 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-// Create Three.js scene
-function initializeThreeJS() {
-	const container = document.getElementById("feather");
+class FeatherApp {
+	constructor() {
+		this.container = document.getElementById("feather");
+		this.scene = new THREE.Scene();
+		this.camera = new THREE.PerspectiveCamera(
+			75,
+			this.container.offsetWidth / this.container.offsetHeight,
+			0.1,
+			1000
+		);
+		this.camera.position.z = 5;
+		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer.setSize(
+			this.container.offsetWidth,
+			this.container.offsetHeight
+		);
+		this.container.appendChild(this.renderer.domElement);
+		this.light = new THREE.AmbientLight(0xffffff, 1);
+		this.scene.add(this.light);
+		this.loader = new GLTFLoader();
 
-	// Scene setup
-	const scene = new THREE.Scene();
-	const camera = new THREE.PerspectiveCamera(
-		75,
-		container.offsetWidth / container.offsetHeight,
-		0.1,
-		1000
-	);
-	camera.position.z = 5;
+		this.loader.load(
+			"assets/feather.glb",
+			(gltf) => {
+				this.feather = gltf.scene;
+				const scaleFactor = 10;
+				this.feather.scale.set(scaleFactor, scaleFactor, scaleFactor);
+				this.scene.add(this.feather);
+				this.rotationSpeed = 0.01;
+				this.animate();
 
-	const renderer = new THREE.WebGLRenderer({ antialias: true });
-	renderer.setSize(container.offsetWidth, container.offsetHeight);
-	container.appendChild(renderer.domElement);
-
-	const light = new THREE.AmbientLight(0xffffff, 1);
-	scene.add(light);
-
-	const loader = new GLTFLoader();
-	loader.load(
-		"assets/feather.glb",
-		(gltf) => {
-			const feather = gltf.scene;
-
-			// Scale up the feather model
-			const scaleFactor = 10;
-			feather.scale.set(scaleFactor, scaleFactor, scaleFactor);
-
-			scene.add(feather);
-
-			// Animate the feather
-			let rotationSpeed = 0.01;
-			function animate() {
-				requestAnimationFrame(animate);
-				feather.rotation.y += rotationSpeed;
-				renderer.render(scene, camera);
+				window.addEventListener("mousemove", (event) => {
+					const x = (event.clientX / window.innerWidth) * 2 - 1;
+					const y = -(event.clientY / window.innerHeight) * 2 + 1;
+					this.feather.position.x = x * 2;
+					this.feather.position.y = y * 2;
+				});
+			},
+			undefined,
+			(error) => {
+				console.error("An error occurred loading the GLTF model:", error);
 			}
+		);
 
-			animate();
+		window.addEventListener("resize", () => {
+			this.camera.aspect =
+				this.container.offsetWidth / this.container.offsetHeight;
+			this.camera.updateProjectionMatrix();
+			this.renderer.setSize(
+				this.container.offsetWidth,
+				this.container.offsetHeight
+			);
+		});
+	}
 
-			// Allow user interaction
-			window.addEventListener("mousemove", (event) => {
-				const x = (event.clientX / window.innerWidth) * 2 - 1;
-				const y = -(event.clientY / window.innerHeight) * 2 + 1;
-				feather.position.x = x * 2;
-				feather.position.y = y * 2;
-			});
-		},
-		undefined,
-		(error) => {
-			console.error("An error occurred loading the GLTF model:", error);
+	animate() {
+		requestAnimationFrame(() => this.animate());
+		if (this.feather) {
+			this.feather.rotation.y += this.rotationSpeed;
 		}
-	);
-
-	// Resize listener
-	window.addEventListener("resize", () => {
-		camera.aspect = container.offsetWidth / container.offsetHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize(container.offsetWidth, container.offsetHeight);
-	});
+		this.renderer.render(this.scene, this.camera);
+	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	initializeThreeJS();
+	new FeatherApp();
 });
