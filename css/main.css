@@ -242,40 +242,6 @@ nav a:hover span {
 	transition: transform 0.3s ease-out;
 }
 
-.banner-container #banner-1,
-.banner-container #banner-2,
-.banner-container #banner-3 {
-	margin-top: 20px;
-	width: 100%;
-	height: 592px;
-	background: url(/images/banner-1.png) var(--left) 0,
-		url(/images/bottle-cane.png);
-	background-blend-mode: multiply;
-	mask-image: url(/images/bottle-cane.png);
-	mask-size: contain;
-	transition: transform 0.7s ease-out;
-	transform-origin: center;
-	transform: perspective(500px) rotateY(var(--left)) rotateX(var(--top));
-}
-
-.banner-container #banner-1 {
-	background-image: url(/images/banner-1.png), url(/images/bottle-cane.png);
-	aspect-ratio: 2 / 5;
-	background-size: auto 100%, cover;
-}
-
-.banner-container #banner-2 {
-	background-image: url(/images/banner-2.png), url(/images/bottle-cane.png);
-	aspect-ratio: 2 / 5;
-	background-size: auto 100%, cover;
-}
-
-.banner-container #banner-3 {
-	background-image: url(/images/banner-3.png), url(/images/bottle-cane.png);
-	aspect-ratio: 2 / 5;
-	background-size: auto 100%, cover;
-}
-
 /* Reflection effect using ::before */
 .banner-container .engineer::before {
 	content: "";

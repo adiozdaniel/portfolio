@@ -81,6 +81,7 @@ class BannerManager {
 
 		if (this.container) {
 			this.initializeBanners();
+			this.injectDynamicStyles();
 		} else {
 			console.error(`Container "${containerSelector}" not found.`);
 		}
@@ -99,10 +100,42 @@ class BannerManager {
 			this.container.appendChild(engineer);
 		}
 	}
+
+	injectDynamicStyles() {
+		const styleElement = document.createElement("style");
+		let styles = "";
+
+		for (let i = 1; i <= this.bannerCount; i++) {
+			styles += `
+				.banner-container #banner-${i} {
+					margin-top: 20px;
+					width: 100%;
+					height: 592px;
+					background: url(/images/banner-${i}.png) var(--left) 0,
+						url(/images/bottle-cane.png);
+					background-blend-mode: multiply;
+					mask-image: url(/images/bottle-cane.png);
+					mask-size: contain;
+					transition: transform 0.7s ease-out;
+					transform-origin: center;
+					transform: perspective(500px) rotateY(var(--left)) rotateX(var(--top));
+				}
+
+				.banner-container #banner-${i} {
+					background-image: url(/images/banner-${i}.png), url(/images/bottle-cane.png);
+					aspect-ratio: 2 / 5;
+					background-size: auto 100%, cover;
+				}
+			`;
+		}
+
+		styleElement.textContent = styles;
+		document.head.appendChild(styleElement);
+	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	new BannerManager(".banner-container", 3);
+	new BannerManager(".banner-container", 6);
 
 	document.querySelectorAll(".engineer").forEach((engineer) => {
 		new EngineerScrollHandler(engineer);
