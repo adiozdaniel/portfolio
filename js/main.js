@@ -1,4 +1,3 @@
-// Handles mouse movement, scrolling, and touch swipes for continuous horizontal scroll with limits
 class EngineerScrollHandler {
 	constructor(engineer) {
 		this.engineer = engineer;
@@ -75,6 +74,47 @@ class EngineerScrollHandler {
 	}
 }
 
-document.querySelectorAll(".engineer").forEach((engineer) => {
-	new EngineerScrollHandler(engineer);
+class BannerManager {
+	constructor(containerSelector, bannerCount, commonConfig) {
+		this.container = document.querySelector(containerSelector);
+		this.bannerCount = bannerCount;
+		this.commonConfig = commonConfig;
+
+		if (this.container) {
+			this.initializeBanners();
+		} else {
+			console.error(`Container "${containerSelector}" not found.`);
+		}
+	}
+
+	initializeBanners() {
+		for (let i = 1; i <= this.bannerCount; i++) {
+			const engineer = document.createElement("div");
+			engineer.classList.add("engineer");
+
+			const bannerDiv = document.createElement("div");
+			bannerDiv.id = `banner-${i}`;
+			bannerDiv.classList.add("banner");
+
+			engineer.appendChild(bannerDiv);
+			this.container.appendChild(engineer);
+		}
+	}
+}
+
+// Usage
+document.addEventListener("DOMContentLoaded", () => {
+	const commonConfig = {
+		basePath: "/images",
+		mask: "/images/bottle-cane.png",
+		aspectRatio: "2 / 5",
+	};
+
+	// Initialize banners
+	new BannerManager(".banner-container", 3, commonConfig);
+
+	// Add scroll handlers for interactivity
+	document.querySelectorAll(".engineer").forEach((engineer) => {
+		new EngineerScrollHandler(engineer);
+	});
 });
