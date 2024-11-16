@@ -44,6 +44,7 @@ header {
 }
 
 nav {
+	display: block;
 	padding: 10px;
 	margin: 10px;
 }
@@ -209,20 +210,6 @@ nav a:hover span {
 	transition: opacity 0.4s ease;
 }
 
-/* Show hamburger icon on small screens */
-@media (max-width: 768px) {
-	.header-container {
-		margin-top: 80px;
-	}
-	#hamburger {
-		display: block;
-	}
-
-	nav {
-		display: none;
-	}
-}
-
 /* Banner */
 .banner-container {
 	position: absolute;
@@ -279,4 +266,24 @@ nav a:hover span {
 	position: relative;
 	overflow: hidden;
 	background: transparent;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+	#hamburger {
+		display: block;
+	}
+
+	.banner-container {
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		padding: 20px;
+		width: 100%;
+		margin: 0;
+	}
+
+	nav {
+		display: none;
+	}
 }
