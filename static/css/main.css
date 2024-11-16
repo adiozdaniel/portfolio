@@ -225,7 +225,7 @@ nav a:hover span {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 30px;
+	gap: 5px;
 	flex-wrap: wrap;
 	width: 100%;
 	margin: auto;
@@ -239,7 +239,8 @@ nav a:hover span {
 	transition: 0.7s;
 	position: relative;
 	perspective: 1000px;
-	transition: transform 0.3s ease-out;
+	transition: transform 0.7s ease-out;
+	transform: translateX(-5%);
 }
 
 /* Reflection effect using ::before */
