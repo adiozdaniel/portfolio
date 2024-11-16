@@ -31,7 +31,7 @@ body {
 	font-size: 14px;
 	margin: 0;
 	padding: 0;
-	background: var(--shadedbackground-color);
+	background: var(--fadebackground-color);
 }
 
 header {
