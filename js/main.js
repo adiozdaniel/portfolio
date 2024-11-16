@@ -34,4 +34,21 @@ document.querySelectorAll(".engineer").forEach((engineer) => {
 		},
 		{ passive: false }
 	);
+
+	let touchStart = 0;
+
+	engineer.addEventListener("touchstart", function (e) {
+		touchStart = e.touches[0].clientX;
+	});
+
+	engineer.addEventListener("touchmove", function (e) {
+		let touchMove = e.touches[0].clientX;
+		let touchDelta = touchMove - touchStart;
+		let swipeLeft = (touchDelta / window.innerWidth) * 200;
+
+		if (swipeLeft > maxScroll) swipeLeft = maxScroll;
+		if (swipeLeft < minScroll) swipeLeft = minScroll;
+
+		engineer.style.setProperty("--left", `${swipeLeft}px`);
+	});
 });
