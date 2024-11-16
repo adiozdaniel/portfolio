@@ -75,10 +75,9 @@ class EngineerScrollHandler {
 }
 
 class BannerManager {
-	constructor(containerSelector, bannerCount, commonConfig) {
+	constructor(containerSelector, bannerCount) {
 		this.container = document.querySelector(containerSelector);
 		this.bannerCount = bannerCount;
-		this.commonConfig = commonConfig;
 
 		if (this.container) {
 			this.initializeBanners();
@@ -102,18 +101,9 @@ class BannerManager {
 	}
 }
 
-// Usage
 document.addEventListener("DOMContentLoaded", () => {
-	const commonConfig = {
-		basePath: "/images",
-		mask: "/images/bottle-cane.png",
-		aspectRatio: "2 / 5",
-	};
+	new BannerManager(".banner-container", 3);
 
-	// Initialize banners
-	new BannerManager(".banner-container", 3, commonConfig);
-
-	// Add scroll handlers for interactivity
 	document.querySelectorAll(".engineer").forEach((engineer) => {
 		new EngineerScrollHandler(engineer);
 	});
