@@ -135,7 +135,7 @@ class BannerManager {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	new BannerManager(".banner-container", 6);
+	new BannerManager(".banner-container", 7);
 
 	document.querySelectorAll(".engineer").forEach((engineer) => {
 		new EngineerScrollHandler(engineer);
