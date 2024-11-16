@@ -11,6 +11,7 @@
 	/* base colors */
 	--background-color: rgba(47, 19, 1, 1);
 	--fadebackground-color: #1e1e1e;
+	--shadedbackground-color: #a4a3a3;
 	--stroke-color: #dca007;
 	--shadow-color: #000000b2;
 	--shade-color: #020202;
@@ -28,10 +29,12 @@ body {
 	align-items: center;
 	min-height: 100vh;
 	font-size: 14px;
+	background: var(--shadedbackground-color);
 }
 
 header {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -72,90 +75,6 @@ nav a span {
 nav a:hover span {
 	transform: scale(1) translateY(0);
 	opacity: 1;
-}
-
-.main-container {
-	width: 100%;
-	height: 100vh;
-	background: var(--background-color);
-	opacity: 1;
-	position: relative;
-	top: 0px;
-	left: 0px;
-	overflow: hidden;
-	z-index: 1;
-}
-
-/* Container for SVG with border radius */
-.header-container {
-	margin: auto;
-	position: relative;
-	width: 95%;
-	height: 300px;
-	background-color: var(--fadebackground-color);
-	opacity: 0.8;
-	transition: opacity 0.5s ease;
-	box-shadow: 0px 4px 15px var(--shadow-color);
-	border-radius: 30px;
-}
-
-/* SVG scaling styles */
-#svgPattern,
-#svgGradient {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 36%;
-}
-
-#svgPattern {
-	z-index: 2;
-	height: 100%;
-}
-
-#svgGradient {
-	height: 100%;
-	z-index: 1;
-}
-
-/* Style for svgPattern lines */
-.line-pattern {
-	stroke: var(--stroke-color);
-	stroke-opacity: 0.33;
-}
-
-/* Background color for the svgGradient */
-.background-rect {
-	fill: var(--fadebackground-color);
-}
-
-/* Style for the gradient ellipse */
-.gradient-ellipse {
-	fill: url(#paint0_linear_0_1);
-}
-
-/* adioz image */
-.header-container #adioz_kwene {
-	margin-top: 20px;
-	z-index: 3;
-	height: 160%;
-	transform: scaleX(-1);
-}
-
-.fullstack-text {
-	margin-left: 30px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	max-width: 40%;
-}
-
-.fullstack-text img {
-	max-width: 100%;
-	display: block;
-	margin: 20px;
-	position: inherit;
 }
 
 /* Hamburger */
@@ -303,28 +222,52 @@ nav a:hover span {
 
 /* Banner */
 .banner {
-	height: 100vh;
-	overflow: hidden;
-	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: auto;
 }
 
 .banner .engineer {
 	width: 500px;
 	height: 500px;
-	position: absolute;
-	bottom: 170px;
-	left: 0;
-	transform: translateX(50%);
+	transform: translateX(10%);
 	z-index: 5;
 	transition: 0.7s;
 }
 
-.banner .engineer .bottle {
+.banner #banner-1 {
 	margin-top: 20px;
-	background: url(/images/adioz_kwene.png) var(--left) 0,
-		url(/images/bottle-1.png);
+	background: url(/images/banner-1.png) var(--left) 0, url(/images/bottle-1.png);
 	background-size: auto 100%;
-	width: 320px;
+	width: 380px;
+	aspect-ratio: 2 / 5;
+	background-blend-mode: multiply;
+	mask-image: url(/images/bottle-1.png);
+	mask-size: auto 100%;
+	transition: 0.7s;
+}
+
+.banner #banner-2 {
+	margin-top: 20px;
+	background: url(/images/banner-2.png) var(--left) 0, url(/images/bottle-1.png);
+	background-size: auto 100%;
+	width: 380px;
+	aspect-ratio: 2 / 5;
+	background-blend-mode: multiply;
+	mask-image: url(/images/bottle-1.png);
+	mask-size: auto 100%;
+	transition: 0.7s;
+}
+
+.banner #banner-3 {
+	margin-top: 20px;
+	background: url(/images/banner-3.png) var(--left) 0, url(/images/bottle-1.png);
+	background-size: auto 100%;
+	width: 380px;
 	aspect-ratio: 2 / 5;
 	background-blend-mode: multiply;
 	mask-image: url(/images/bottle-1.png);
@@ -334,4 +277,6 @@ nav a:hover span {
 
 .banner .engineer:hover {
 	--left: -1000px;
+	transform: translateY(-5%) translateY(-10%);
+	z-index: 10;
 }
