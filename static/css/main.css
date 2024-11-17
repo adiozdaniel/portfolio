@@ -18,6 +18,7 @@
 	--text-color: #ada446;
 	--inactive-text-color: #6c6836;
 	--highlight-color: #0ef;
+	--secondbackground-color: #024b50;
 
 	/* animations */
 	--left: 0px;
@@ -25,8 +26,8 @@
 
 body {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	justify-content: flex-end;
+	align-items: flex-end;
 	min-height: 100vh;
 	font-size: 14px;
 	margin: 0;
@@ -35,12 +36,21 @@ body {
 }
 
 header {
-	position: absolute;
+	position: fixed;
+	top: 0;
 	display: flex;
 	width: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: var(--secondbackground-color);
+	min-height: 100px;
 }
 
 nav {
@@ -214,6 +224,7 @@ nav a:hover span {
 .banner-container {
 	position: absolute;
 	top: 20%;
+	padding: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -282,6 +293,13 @@ nav a:hover span {
 
 	nav {
 		display: none;
+	}
+}
+
+@media (max-width: 458px) {
+	.banner-container {
+		padding: 0;
+		margin: 0;
 	}
 }
 
