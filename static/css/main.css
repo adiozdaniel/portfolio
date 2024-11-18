@@ -208,6 +208,7 @@ nav a:hover span {
 
 #hamburger {
 	width: 80%;
+	height: 50%;
 	position: fixed;
 	top: 20px;
 	display: none;
@@ -221,10 +222,10 @@ nav a:hover span {
 #hamburger ul {
 	position: relative;
 	transform: skewY(-15deg);
+	margin-top: 20px;
 }
 
 #hamburger ul li {
-	margin: 2px;
 	position: relative;
 	list-style: none;
 	width: 200px;
@@ -237,6 +238,7 @@ nav a:hover span {
 #hamburger ul li:hover {
 	background: var(--highlight-color);
 	transform: translateX(50px);
+	transform: translateY(-50px);
 }
 
 #hamburger ul li:last-child::after {
@@ -496,9 +498,8 @@ nav a:hover span {
 	background-color: var(--shade-text-color);
 	border-radius: 8px;
 	box-shadow: 0 2px 8px var(--shadow-color);
-	margin: 2rem auto;
-	max-width: 800px;
-	margin: 80px auto;
+	max-width: 80%;
+	margin: 60px auto;
 }
 
 .contact-container h1 {
