@@ -3,3 +3,6 @@
 
 # ignore tmp files
 /tmp/
+
+# ignore environment variables
+.env
