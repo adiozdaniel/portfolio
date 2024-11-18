@@ -439,3 +439,49 @@ nav a:hover span {
 		min-width: 130%;
 	}
 }
+
+/* Projects Section */
+.projects-container {
+	margin: 30px;
+	padding: 3rem 2rem;
+	text-align: center;
+}
+
+.projects-container h1 {
+	font-size: 2.5rem;
+	margin-bottom: 2rem;
+}
+
+.project-card {
+	background-color: white;
+	padding: 2rem;
+	margin: 1rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	text-align: left;
+	transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+	transform: translateY(-10px);
+}
+
+.project-card h2 {
+	font-size: 1.8rem;
+	margin-bottom: 1rem;
+}
+
+.project-card p {
+	font-size: 1.1rem;
+	margin-bottom: 1.5rem;
+}
+
+.project-link {
+	color: #0077b6;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.project-link:hover {
+	text-decoration: underline;
+}
