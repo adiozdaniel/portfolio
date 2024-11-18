@@ -13,7 +13,7 @@ const (
 	smtpServer = "smtp.gmail.com"
 	smtpPort   = "587"
 	username   = "adiozdaniel@gmail.com"
-	password   = "fpmz eqds eiul nmzh"
+	password   = "skjfsfkl;jsdfuweyewk"
 )
 
 // Email struct to handle JSON data
