@@ -6,14 +6,14 @@ import (
 	"log"
 	"net/http"
 	"net/smtp"
+	"os"
+	"regexp"
 )
 
-// Gmail SMTP configuration
+// Gmail SMTP configuration from environment variables
 const (
 	smtpServer = "smtp.gmail.com"
 	smtpPort   = "587"
-	username   = ""
-	password   = ""
 )
 
 // Email struct to handle JSON data
@@ -66,6 +66,27 @@ func submitContactForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Validate email format
+	if !isValidEmail(email.Email) {
+		http.Error(w, "Invalid email address", http.StatusBadRequest)
+		return
+	}
+
+	// Validate that message is not empty
+	if email.Message == "" {
+		http.Error(w, "Message cannot be empty", http.StatusBadRequest)
+		return
+	}
+
+	// Get Gmail credentials from environment variables
+	username := os.Getenv("GMAIL_USERNAME")
+	password := os.Getenv("GMAIL_PASSWORD")
+
+	if username == "" || password == "" {
+		http.Error(w, "SMTP credentials not configured", http.StatusInternalServerError)
+		return
+	}
+
 	subject := "New Contact Form Submission"
 	body := fmt.Sprintf("Name: %s\nEmail: %s\nMessage:\n%s", email.Name, email.Email, email.Message)
 	message := []byte("To: " + username + "\r\n" +
@@ -89,4 +110,11 @@ func submitContactForm(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
+}
+
+// Helper function to validate email format
+func isValidEmail(email string) bool {
+	const emailRegex = `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+	re := regexp.MustCompile(emailRegex)
+	return re.MatchString(email)
 }
