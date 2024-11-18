@@ -18,7 +18,7 @@ class ContactForm {
 		this.setLoading(true);
 
 		try {
-			const response = await fetch("http://localhost:8080/submit", {
+			const response = await fetch("http://localhost:3000/submit", {
 				method: this.form.method || "POST",
 				headers: {
 					"Content-Type": "application/json",
