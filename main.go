@@ -12,8 +12,8 @@ import (
 const (
 	smtpServer = "smtp.gmail.com"
 	smtpPort   = "587"
-	username   = "adiozdaniel@gmail.com"
-	password   = "skjfsfkl;jsdfuweyewk"
+	username   = ""
+	password   = ""
 )
 
 // Email struct to handle JSON data
