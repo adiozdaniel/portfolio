@@ -6,3 +6,6 @@
 
 # ignore environment variables
 .env
+
+# ignore build files
+/dist/
