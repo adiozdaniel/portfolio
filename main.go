@@ -12,8 +12,8 @@ import (
 const (
 	smtpServer = "smtp.gmail.com"
 	smtpPort   = "587"
-	username   = "adiozdaniel@gmail.com" // Your Gmail address
-	password   = "fpmz eqds eiul nmzh"   // Your Gmail app password
+	username   = "adiozdaniel@gmail.com"
+	password   = ""
 )
 
 // Email struct to handle JSON data
