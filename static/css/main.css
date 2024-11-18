@@ -499,7 +499,9 @@ nav a:hover span {
 	border-radius: 8px;
 	box-shadow: 0 2px 8px var(--shadow-color);
 	max-width: 80%;
-	margin: 60px auto;
+	margin: auto;
+	margin-top: 80px;
+	margin-bottom: 120px;
 }
 
 .contact-container h1 {
