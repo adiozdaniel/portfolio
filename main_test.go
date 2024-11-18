@@ -182,3 +182,39 @@ func TestSuccessfulEmailSubmission(t *testing.T) {
 		t.Errorf("Expected 'success' status, got '%v'", response["status"])
 	}
 }
+
+// Test server error (e.g., SMTP failure)
+func TestServerError(t *testing.T) {
+	// Set environment variables for testing with wrong credentials to simulate failure
+	os.Setenv("GMAIL_USERNAME", "wrong-email@gmail.com")
+	os.Setenv("GMAIL_PASSWORD", "wrong-password")
+
+	emailWithError := Email{
+		Name:    "John Doe",
+		Email:   "johndoe@example.com",
+		Message: "Hello!",
+	}
+
+	data, err := json.Marshal(emailWithError)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	req, err := http.NewRequest("POST", "/submit", bytes.NewBuffer(data))
+	if err != nil {
+		t.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	// Mock response recorder
+	rr := httptest.NewRecorder()
+
+	// Call the handler
+	handler := http.HandlerFunc(submitContactForm)
+	handler.ServeHTTP(rr, req)
+
+	// Check if the status code is 500 Internal Server Error
+	if rr.Code != http.StatusInternalServerError {
+		t.Errorf("Expected status %v, got %v", http.StatusInternalServerError, rr.Code)
+	}
+}
