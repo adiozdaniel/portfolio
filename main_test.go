@@ -69,3 +69,35 @@ func TestInvalidJSONPayload(t *testing.T) {
 		t.Errorf("Expected status %v, got %v", http.StatusBadRequest, rr.Code)
 	}
 }
+
+// Test invalid email format
+func TestInvalidEmail(t *testing.T) {
+	invalidEmail := Email{
+		Name:    "John Doe",
+		Email:   "invalid-email",
+		Message: "Hello!",
+	}
+
+	data, err := json.Marshal(invalidEmail)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	req, err := http.NewRequest("POST", "/submit", bytes.NewBuffer(data))
+	if err != nil {
+		t.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	// Mock response recorder
+	rr := httptest.NewRecorder()
+
+	// Call the handler
+	handler := http.HandlerFunc(submitContactForm)
+	handler.ServeHTTP(rr, req)
+
+	// Check if the status code is 400 Bad Request
+	if rr.Code != http.StatusBadRequest {
+		t.Errorf("Expected status %v, got %v", http.StatusBadRequest, rr.Code)
+	}
+}
