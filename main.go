@@ -13,7 +13,7 @@ const (
 	smtpServer = "smtp.gmail.com"
 	smtpPort   = "587"
 	username   = "adiozdaniel@gmail.com"
-	password   = ""
+	password   = "fpmz eqds eiul nmzh"
 )
 
 // Email struct to handle JSON data
@@ -82,7 +82,7 @@ func submitContactForm(w http.ResponseWriter, r *http.Request) {
 	// Prepare a success response
 	response := map[string]string{
 		"status":  "success",
-		"message": "Your message has been sent successfully. Thank you for contacting us!",
+		"message": "Your message has been sent successfully. Thank you for contacting Adioz!",
 	}
 
 	// Write JSON response
