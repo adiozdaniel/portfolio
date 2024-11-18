@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -79,6 +80,38 @@ func TestInvalidEmail(t *testing.T) {
 	}
 
 	data, err := json.Marshal(invalidEmail)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	req, err := http.NewRequest("POST", "/submit", bytes.NewBuffer(data))
+	if err != nil {
+		t.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	// Mock response recorder
+	rr := httptest.NewRecorder()
+
+	// Call the handler
+	handler := http.HandlerFunc(submitContactForm)
+	handler.ServeHTTP(rr, req)
+
+	// Check if the status code is 400 Bad Request
+	if rr.Code != http.StatusBadRequest {
+		t.Errorf("Expected status %v, got %v", http.StatusBadRequest, rr.Code)
+	}
+}
+
+// Test empty message
+func TestEmptyMessage(t *testing.T) {
+	emptyMessage := Email{
+		Name:    "John Doe",
+		Email:   "johndoe@example.com",
+		Message: "",
+	}
+
+	data, err := json.Marshal(emptyMessage)
 	if err != nil {
 		t.Fatal(err)
 	}
