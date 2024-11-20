@@ -1,0 +1,23 @@
+{
+	"version": 3,
+	"file": "contact-1af366a6.js",
+	"sources": [
+		"../../src/js/contact.js"
+	],
+	"sourcesContent": [
+		"class ContactForm {\n\tconstructor(formSelector) {\n\t\tthis.form = document.querySelector(formSelector);\n\n\t\tif (this.form) {\n\t\t\tthis.addEventListeners();\n\t\t} else {\n\t\t\tconsole.error(\"Form not found!\");\n\t\t}\n\t}\n\n\t// Method to handle form submission\n\tasync handleSubmit(event) {\n\t\tevent.preventDefault();\n\t\tconst formData = new FormData(this.form);\n\t\tconst data = Object.fromEntries(formData);\n\n\t\tthis.setLoading(true);\n\n\t\ttry {\n\t\t\tconst response = await fetch(\"https://adioz.co.ke/submit\", {\n\t\t\t\tmethod: this.form.method || \"POST\",\n\t\t\t\theaders: {\n\t\t\t\t\t\"Content-Type\": \"application/json\",\n\t\t\t\t},\n\t\t\t\tbody: JSON.stringify(data),\n\t\t\t});\n\n\t\t\tif (!response.ok) {\n\t\t\t\tthrow new Error(`Error: ${response.statusText}`);\n\t\t\t}\n\n\t\t\tconst result = await response.json();\n\t\t\tthis.handleSuccess(result);\n\t\t} catch (error) {\n\t\t\tthis.handleError(error);\n\t\t} finally {\n\t\t\tthis.setLoading(false);\n\t\t}\n\t}\n\n\t// Add event listeners\n\taddEventListeners() {\n\t\tthis.form.addEventListener(\"submit\", (event) => this.handleSubmit(event));\n\t}\n\n\t// Show or hide loading indicator\n\tsetLoading(isLoading) {\n\t\tconst submitButton = this.form.querySelector(\"button[type='submit']\");\n\t\tif (submitButton) {\n\t\t\tsubmitButton.disabled = isLoading;\n\t\t\tsubmitButton.textContent = isLoading ? \"Sending...\" : \"Send Message\";\n\t\t}\n\t}\n\n\t// Handle successful form submission\n\thandleSuccess(response) {\n\t\talert(response.message || \"Message sent successfully!\");\n\t\tconsole.log(\"Response:\", response);\n\t\tthis.form.reset();\n\t}\n\n\t// Handle errors during form submission\n\thandleError(error) {\n\t\talert(\"Failed to send the message. Please try again.\");\n\t\tconsole.error(\"Error:\", error);\n\t}\n}\n\n// Initialize the ContactForm class\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\tnew ContactForm(\".contact-form\");\n});\n"
+	],
+	"names": [
+		"ContactForm",
+		"formSelector",
+		"event",
+		"formData",
+		"data",
+		"response",
+		"result",
+		"error",
+		"isLoading",
+		"submitButton"
+	],
+	"mappings": "6CAAA,MAAMA,CAAY,CACjB,YAAYC,EAAc,CACzB,KAAK,KAAO,SAAS,cAAcA,CAAY,EAE3C,KAAK,KACR,KAAK,kBAAiB,EAEtB,QAAQ,MAAM,iBAAiB,CAEhC,CAGD,MAAM,aAAaC,EAAO,CACzBA,EAAM,eAAc,EACpB,MAAMC,EAAW,IAAI,SAAS,KAAK,IAAI,EACjCC,EAAO,OAAO,YAAYD,CAAQ,EAExC,KAAK,WAAW,EAAI,EAEpB,GAAI,CACH,MAAME,EAAW,MAAM,MAAM,+BAAgC,CAC5D,OAAQ,KAAK,KAAK,QAAU,OAC5B,QAAS,CACR,eAAgB,kBAChB,EACD,KAAM,KAAK,UAAUD,CAAI,CAC7B,CAAI,EAED,GAAI,CAACC,EAAS,GACb,MAAM,IAAI,MAAM,UAAUA,EAAS,UAAU,EAAE,EAGhD,MAAMC,EAAS,MAAMD,EAAS,OAC9B,KAAK,cAAcC,CAAM,CACzB,OAAQC,EAAO,CACf,KAAK,YAAYA,CAAK,CACzB,QAAY,CACT,KAAK,WAAW,EAAK,CACrB,CACD,CAGD,mBAAoB,CACnB,KAAK,KAAK,iBAAiB,SAAWL,GAAU,KAAK,aAAaA,CAAK,CAAC,CACxE,CAGD,WAAWM,EAAW,CACrB,MAAMC,EAAe,KAAK,KAAK,cAAc,uBAAuB,EAChEA,IACHA,EAAa,SAAWD,EACxBC,EAAa,YAAcD,EAAY,aAAe,eAEvD,CAGD,cAAcH,EAAU,CACvB,MAAMA,EAAS,SAAW,4BAA4B,EACtD,QAAQ,IAAI,YAAaA,CAAQ,EACjC,KAAK,KAAK,OACV,CAGD,YAAYE,EAAO,CAClB,MAAM,+CAA+C,EACrD,QAAQ,MAAM,SAAUA,CAAK,CAC7B,CACF,CAGA,SAAS,iBAAiB,mBAAoB,IAAM,CACnD,IAAIP,EAAY,eAAe,CAChC,CAAC"
+}
