@@ -7,4 +7,5 @@
 # ignore environment variables
 .env
 
-# ignore build files
+# ignore deployment zip
+deploy.zip
