@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+		<link
+			href="css/main.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="shortcut icon"
+			href="images/favicon.png"
+			type="image/x-icon"
+		/>
+		<title>Adioz Portfolio | Contact</title>
+		<script
+			type="module"
+			crossorigin
+			src="./assets/contact.js"
+		></script>
+	</head>
+	<body>
+		<!-- Header -->
+		<header>
+			<nav>
+				<a
+					class="navbar-link"
+					href="/"
+					>Home<span></span
+				></a>
+				<a
+					class="navbar-link"
+					href="projects.html"
+					>Projects<span></span
+				></a>
+			</nav>
+
+			<div id="hamburger">
+				<input
+					type="checkbox"
+					id="menu-toggle"
+					class="menu-toggle"
+				/>
+				<label
+					for="menu-toggle"
+					class="hamburger"
+				>
+					<div
+						id="bar1"
+						class="bar"
+					></div>
+					<div
+						id="bar2"
+						class="bar"
+					></div>
+					<div
+						id="bar3"
+						class="bar"
+					></div>
+				</label>
+				<ul id="nav-menu">
+					<li id="home">
+						<a
+							class="navItem"
+							href="/"
+							>Home</a
+						>
+					</li>
+					<li id="projects">
+						<a
+							class="navItem"
+							href="projects.html"
+							>Projects</a
+						>
+					</li>
+				</ul>
+			</div>
+		</header>
+
+		<!-- Contact Form Section -->
+		<div class="contact-container">
+			<h1>Contact Me</h1>
+			<p>
+				If you have any questions or want to get in touch, feel free to reach
+				out!
+			</p>
+
+			<form
+				method="POST"
+				class="contact-form"
+			>
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input
+						type="text"
+						id="name"
+						name="name"
+						required
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						required
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="message">Message:</label>
+					<textarea
+						id="message"
+						name="message"
+						rows="5"
+						required
+					></textarea>
+				</div>
+
+				<button
+					type="submit"
+					class="submit-button"
+				>
+					Send Message
+				</button>
+			</form>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<div class="waves">
+				<div
+					class="wave"
+					id="wave1"
+				></div>
+				<div
+					class="wave"
+					id="wave2"
+				></div>
+				<div
+					class="wave"
+					id="wave3"
+				></div>
+				<div
+					class="wave"
+					id="wave4"
+				></div>
+			</div>
+			<ul class="social-icon">
+				<li>
+					<a href="https://facebook.com/adiozdaniel"
+						><ion-icon name="logo-facebook"></ion-icon
+					></a>
+				</li>
+				<li>
+					<a href="https://x.com/adiozdaniel"
+						><ion-icon name="logo-twitter"></ion-icon
+					></a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/in/adioz-daniel-5a594473"
+						><ion-icon name="logo-linkedin"></ion-icon
+					></a>
+				</li>
+			</ul>
+			<ul class="menu">
+				<li><a href="/">Home</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li><a href="#">Privacy</a></li>
+			</ul>
+			<p class="copyright">&copy; 2024 Adioz. All rights reserved.</p>
+		</footer>
+
+		<!-- Ionicons -->
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+		></script>
+	</body>
+</html>
